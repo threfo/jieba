@@ -14,7 +14,8 @@ CHAR_STATE_TAB_P = "char_state_tab.p"
 
 re_han_detail = re.compile("([\u4E00-\u9FD5]+)")
 re_skip_detail = re.compile("([\.0-9]+|[a-zA-Z0-9]+)")
-re_han_internal = re.compile("([\u4E00-\u9FD5a-zA-Z0-9+#&\._]+)")
+# re_han_internal = re.compile("([\u4E00-\u9FD5a-zA-Z0-9+#&\._]+)")
+re_han_internal = re.compile("(.+)")
 re_skip_internal = re.compile("(\r\n|\s)")
 
 re_eng = re.compile("[a-zA-Z0-9]+")
@@ -102,7 +103,8 @@ class POSTokenizer(object):
                 line = line.strip().decode("utf-8")
                 if not line:
                     continue
-                word, _, tag = line.split(" ")
+                # word, _, tag = line.split(" ")
+                word, _, tag = line.split('\u0040\u0040')[:3]
                 self.word_tag_tab[word] = tag
             except Exception:
                 raise ValueError(

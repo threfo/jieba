@@ -2,18 +2,20 @@
 import sys
 sys.path.append("../")
 import jieba
+import jieba.posseg as pse
+import jieba.analyse
 
-
-def cuttest(test_sent):
-    result = jieba.cut(test_sent)
-    print(" / ".join(result))
-
+def cuttest(text):
+    # result = list(jieba.cut(text))
+    result = list(pse.cut(text))
+    # result = jieba.analyse.extract_tags(text, allowPOS=['eng', 'n'], withWeight=True)
+    print(result)
 
 if __name__ == "__main__":
-    jieba.add_word('machine learning')
-    jieba.add_word('机器学习')
+    jieba.add_word('machine learning', tag='n')
     cuttest("我掌握了machine learning技术")
-    cuttest("我掌握了机器学习技术")
+    
+    # cuttest("我掌握了机器学习技术")
     # cuttest("这是一个伸手不见五指的黑夜。我叫孙悟空，我爱北京，我爱Python和C++。")
     # cuttest("我不喜欢日本和服。")
     # cuttest("雷猴回归人间。")
