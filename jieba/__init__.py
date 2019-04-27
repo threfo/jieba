@@ -37,7 +37,7 @@ pool = None
 # re_userdict = re.compile('^(.+?)( [0-9]+)?( [a-z]+)?$', re.U)
 re_userdict = re.compile('^(.+?)(\u0040\u0040[0-9]+)?(\u0040\u0040[a-z]+)?$', re.U)
 
-re_eng = re.compile('[a-zA-Z0-9\s]', re.U)
+re_eng = re.compile('[a-zA-Z0-9]', re.U)
 
 # \u4E00-\u9FD5a-zA-Z0-9+#&\._ : All non-space characters. Will be handled with re_han
 # \r\n|\s : whitespace characters. Will not be handled.
@@ -192,10 +192,10 @@ class Tokenizer(object):
             frag = sentence[k]
             is_eng = re_eng.match(frag) != None
             # 在连续英文的情况下不要中断
-            while i < N and (frag in self.FREQ and (
+            while i < N and (frag in self.FREQ or (
                 not is_eng or ( is_eng and k < N - 1 and is_eng != (re_eng.match(sentence[k+1]) != None))
             )):
-                if self.FREQ[frag]:
+                if frag in self.FREQ and self.FREQ[frag]:
                     tmplist.append(i)
                 i += 1
                 frag = sentence[k:i + 1]
