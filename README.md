@@ -7,6 +7,16 @@ Why we fork?
 https://github.com/fxsjy/jieba/issues/423
 
 * 解决空格字典的问题
+* 解决英文边界问题
+
+```
+import jieba
+
+jieba.add_word('ck')
+print(list(jieba.cut('lock'))
+
+lock， 而不是lo ck
+```
 
 ========
 “结巴”中文分词：做最好的 Python 中文分词组件
