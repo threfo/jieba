@@ -186,22 +186,26 @@ class Tokenizer(object):
         self.check_initialized()
         DAG = {}
         N = len(sentence)
+        previous_freq_is_en = None
         for k in xrange(N):
             tmplist = []
             i = k
             frag = sentence[k]
             is_eng = re_eng.match(frag) != None
             # 在连续英文的情况下不要中断
-            while i < N and (frag in self.FREQ or (
-                not is_eng or ( is_eng and k < N - 1 and is_eng != (re_eng.match(sentence[k+1]) != None))
-            )):
-                if frag in self.FREQ and self.FREQ[frag]:
-                    tmplist.append(i)
-                i += 1
-                frag = sentence[k:i + 1]
+            if not (is_eng and previous_freq_is_en):
+                while i < N and (frag in self.FREQ or (
+                    not is_eng or ( is_eng and k < N - 1 and is_eng != (re_eng.match(sentence[k+1]) != None))
+                )):
+                    if frag in self.FREQ and self.FREQ[frag]:
+                        tmplist.append(i)
+                    i += 1
+                    frag = sentence[k:i + 1]
+                    is_eng = re_eng.match(frag) != None
             if not tmplist:
                 tmplist.append(k)
             DAG[k] = tmplist
+            previous_freq_is_en = is_eng
         return DAG
 
     def __cut_all(self, sentence):

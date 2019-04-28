@@ -14,13 +14,13 @@ def cuttest(text):
 if __name__ == "__main__":
     jieba.add_word('machine learning')
     jieba.add_word('ck')
-    print(list(jieba.cut('掌握xx ooxx')))
+    print(list(jieba.cut('xck')))
+    print(list(jieba.cut('lock')))
     print(list(jieba.cut('machine learning')))
     print(list(jieba.cut('掌握machine learning')))
     print(list(jieba.cut('machine learning')))
     print(list(jieba.cut('掌握了一个deeplearning')))
     print(list(jieba.cut('掌握deep learning')))
-    print(list(jieba.cut('掌握xx ooxx')))
     
     # cuttest("我掌握了机器学习技术")
     # cuttest("我掌握了技术")
