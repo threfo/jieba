@@ -43,12 +43,12 @@ GitHub: https://github.com/fxsjy/jieba
 """
 
 setup(name='jieba',
-      version='1.0.1',
+      version='1.0.2',
       description='Chinese Words Segmentation Utilities',
       long_description=LONGDOC,
       author='Sun, Junyi',
       author_email='ccnusjy@gmail.com',
-      url='https://github.com/fxsjy/jieba',
+      url='https://github.com/threfo/jieba',
       license="MIT",
       classifiers=[
         'Intended Audience :: Developers',

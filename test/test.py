@@ -5,6 +5,8 @@ import jieba
 import jieba.posseg as pse
 import jieba.analyse
 
+# jieba.initialize()
+
 def cuttest(text):
     # result = list(jieba.cut(text))
     result = list(pse.cut(text))
@@ -12,9 +14,11 @@ def cuttest(text):
     print(result)
 
 if __name__ == "__main__":
-    jieba.add_word('machine learning')
-    jieba.add_word('ck')
-    print(list(jieba.cut('xck')))
+    # jieba.add_word('machine learning')
+    # jieba.add_word('ck')
+    jieba.add_word('主管')
+    print(list(jieba.cut('销售主管')))
+    # print(list(jieba.cut('xck')))
     print(list(jieba.cut('lock')))
     print(list(jieba.cut('machine learning')))
     print(list(jieba.cut('掌握machine learning')))
